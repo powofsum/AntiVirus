@@ -60,8 +60,8 @@ test_threat.txt is malicious and it is DELETED
 
 ### Run the Restore Tool
 
-[!CAUTION]
-Do not run antivirusd.sh and restore.sh concurrently.
+> [!CAUTION]
+> Do not run antivirusd.sh and restore.sh concurrently.
 
 Using Make:
 
