@@ -88,3 +88,6 @@ any of the following keywords found in file or extensions are considered as mali
 ### Locations 
 Located in antivirusd.sh file  
 
+## Cron job Configuration Guide
+
+
