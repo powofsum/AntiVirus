@@ -174,13 +174,20 @@ echo "Hello world"
 ##----------------------------------------
 
 # functions
-function hello(){
-    echo "Hello $1"
-}
+# function hello(){
+#     echo "Hello $1"
+# }
 
-hellov_2(){
-    echo "Hellooooo"
-}
+# hellov_2(){
+#     echo "Hellooooo"
+# }
 
-hello user
-hellov_2
+# hello user
+# hellov_2
+
+# # [[ -f "$file"]] && return 0 || return 1      if file exist ->1 && ....   1 &&  won't check other and will return 1 son condition is true
+
+##----------------------------------------
+read text
+extension=${text##*.}
+echo "$extension"

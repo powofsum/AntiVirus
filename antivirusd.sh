@@ -89,7 +89,8 @@ run_anti_virus(){
             sleep "$interval_secs"
         else
             scan_dir
-            cp directory-info.new directory-info.last
+            # cp directory-info.new directory-info.last
+            ls -l "$dir" > directory-info.last
             # break
         fi
     done
