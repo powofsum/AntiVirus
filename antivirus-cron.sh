@@ -3,6 +3,9 @@
 dir="$1"
 malicious_dir="$2"
 
+script_dir="$(dirname "$(realpath "$0")")"
+last_file="$script_dir/directory-info.last"
+new_file="$script_dir/directory-info.new"
 
 
 virus_detected(){
@@ -13,15 +16,11 @@ virus_detected(){
     virus_content=("virus" "trojan" "malware" "worm" "ransomware")
     virus_extensions=("exe" "bat" "vbs" "scr" "ps1")
 
-    #echo "$extension"
-
     for i in "${virus_extensions[@]}"
     do
         if [[ "$extension" == "$i" ]]
         then
-            
             return 0
-            
         fi
     done
 
@@ -29,15 +28,13 @@ virus_detected(){
     do
         if grep -qi "$j" "$file_path"
         then
-        #echo "problem"
             return 0
         fi
     done
 
-    #echo "no problem"
     return 1
-
 }
+
 
 scan_dir(){
     
@@ -47,18 +44,14 @@ do
     then
         if virus_detected "$file"
         then
-            # ls -l "$dir" > directory-info.last
             echo "$file is malicious and it is DELETED"
-            # DELTE AND MOVE IT TO MALICIOUS DIR
             move_to_malicious_dir "$file"
-            #echo "$file"
-        # else
-            # echo "no virus"
         fi
     fi
 done
 
 }
+
 
 move_to_malicious_dir(){
     local distDIR="$malicious_dir"
@@ -67,31 +60,26 @@ move_to_malicious_dir(){
 
     if [ -f "$malicious_file" ]
     then
-        mv -i "$1" "$distDIR"  # I FLAG
-        # echo " $file is virus"
-
+        mv -i "$1" "$distDIR"
     fi
 }
 
 
 run_anti_virus(){
-    if  [ ! -f "directory-info.last" ]
+    if [ ! -f "$last_file" ]
     then
         scan_dir
-        ls -l "$dir" > directory-info.last
-     else
-        ls -l "$dir" > directory-info.new
-        if ! cmp -s "directory-info.last" "directory-info.new"
+        ls -l "$dir" > "$last_file"
+    else
+        ls -l "$dir" > "$new_file"
+
+        if ! cmp -s "$last_file" "$new_file"
         then
             scan_dir
-            # cp directory-info.new directory-info.last
-            ls -l "$dir" > directory-info.last
-            # break
+            ls -l "$dir" > "$last_file"
         fi
-
     fi
-   
 }
 
-run_anti_virus
 
+run_anti_virus
