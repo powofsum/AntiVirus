@@ -15,7 +15,7 @@ virus_detected(){
     local extension="${file_name##*.}"
     virus_content=("virus" "trojan" "malware" "worm" "ransomware")
     virus_extensions=("exe" "bat" "vbs" "scr" "ps1")
-
+    
     for i in "${virus_extensions[@]}"
     do
         if [[ "$extension" == "$i" ]]
