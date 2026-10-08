@@ -42,7 +42,7 @@ mkdir -p monitored_dir
 
 ### Run the Antivirus Daemon
 
-The daemon takes three positional arguments: ./antivirusd.sh <dir> <malicious_dir> <interval-secs>
+The daemon takes three positional arguments: ./antivirusd.sh  dir malicious_dir interval-secs
 
 Using Make (automatically creates quarantine_dir before running):
 ```
