@@ -95,6 +95,12 @@ To schedule an automated periodic scan without running a persistent daemon, you 
 ```
 m hr DOM M DOW   /path/to/antivirusd.sh /path/to/monitored_dir /path/to/quarantine_dir
 ```
+>[!NOTE]
+>**Example:**
+>the cron expression should be to run this scan every 3rd Friday of the month at 12:31 am 
+>```
+>31 0 * * 5 [ "$(date +\%d)" -ge 15 ] && [ "$(date +\%d)" -le 21 ] && /path/to/antivirus-cron.sh /path/to/dir1 /path/to/malicious_dir
+>```
 ### How to Setup
 ```
 crontab -e
