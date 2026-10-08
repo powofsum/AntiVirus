@@ -117,4 +117,5 @@ crontab -l
 ```
 
 ## Helpful Links
-[Makefile](https://commandlinux.com/how-to/makefile/)
+- [Makefile](https://commandlinux.com/how-to/makefile/)
+- [Cron Job](https://en.wikipedia.org/wiki/Cron)
