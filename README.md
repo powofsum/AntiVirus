@@ -32,5 +32,52 @@ Make sure the execution permissions are set on both shell scripts:
 ```
 chmod +x antivirusd.sh restore.sh
 ```
+## How to run 
+### Prepare the Directories
 
+Before starting, ensure you have a target directory to monitor (e.g., monitored_dir).
+```
+mkdir -p monitored_dir
+```
+
+### Run the Antivirus Daemon
+
+The daemon takes three positional arguments:
+./antivirusd.sh <dir> <malicious_dir> <interval-secs>
+
+Using Make (automatically creates quarantine_dir before running):
+```
+make antivirus DIR=DIR_NAME MALICIOUS_DIR=DIR_NAME  INTERVA_SECS=SECS
+```
+
+Or running directly via shell:
+```
+./antivirusd.sh monitored_dir quarantine_dir 5
+```
+
+
+Within 5 seconds, the daemon will output:
+test_threat.txt is malicious and it is DELETED
+
+### Run the Restore Tool
+
+Note: Do not run antivirusd.sh and restore.sh concurrently.
+
+Using Make:
+
+make restore
+
+
+Or running directly via shell:
+
+./restore.sh monitored_dir quarantine_dir
+
+
+Interactive Options in Restore Tool:
+
+Input 1: Restore file back to monitored_dir (False positive)
+
+Input 2: Permanently delete file from quarantine_dir (Genuinely malicious)
+
+Input 3: Leave file in quarantine and return to the main list
 
