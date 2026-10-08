@@ -64,20 +64,27 @@ test_threat.txt is malicious and it is DELETED
 > Do not run antivirusd.sh and restore.sh concurrently.
 
 Using Make:
-
-make restore
-
+```
+make restore DIR=DIR_NAME MALICIOUS_DIR=DIR_NAME
+```
 
 Or running directly via shell:
-
+```
 ./restore.sh monitored_dir quarantine_dir
+```
 
-
-Interactive Options in Restore Tool:
+### Interactive Options in Restore Tool:
 
 Input 1: Restore file back to monitored_dir (False positive)
 
 Input 2: Permanently delete file from quarantine_dir (Genuinely malicious)
 
 Input 3: Leave file in quarantine and return to the main list
+
+## flagged-extensions and flagged-keywords lists 
+any of the following keywords found in file or extensions are considered as malicious file. 
+- Keywords (case insensitive) : virus, trojan, malware, worm, ransomware.
+- Extensions:  .exe, .bat, .vbs, .scr, .ps1.
+### Locations 
+Located in antivirusd.sh file  
 
