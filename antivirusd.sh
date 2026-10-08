@@ -53,8 +53,8 @@ do
             # DELTE AND MOVE IT TO MALICIOUS DIR
             move_to_malicious_dir "$file"
             #echo "$file"
-        else
-            echo "no virus"
+        # else
+            # echo "no virus"
         fi
     fi
 done
