@@ -16,11 +16,11 @@
 - antivirus-cron.sh
 
 ## Prerequisites & Ubuntu Installation
--OS: Ubuntu / Linux environment
--Shell: Bash (/bin/bash)
--Utilities: cmp, grep, ls, cp, rm, make,crontab
+- OS: Ubuntu / Linux environment
+- Shell: Bash (/bin/bash)
+- Utilities: cmp, grep, ls, cp, rm, make,crontab
 
-##Installation on Ubuntu
+### Installation on Ubuntu
 Ensure your package lists are up to date and install build-essential (which includes make and core Linux utilities):
 ```
 sudo apt update
@@ -29,8 +29,8 @@ sudo apt install build-essential -y
 
 
 Make sure the execution permissions are set on both shell scripts:
-
+```
 chmod +x antivirusd.sh restore.sh
-
+```
 
 
