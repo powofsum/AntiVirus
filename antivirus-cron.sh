@@ -75,12 +75,11 @@ move_to_malicious_dir(){
 
 
 run_anti_virus(){
-    scan_dir
-     ls -l "$dir" > directory-info.last
-     sleep "$interval_secs"
-     
-
-    
+    if  [ ! -f "directory-info.last" ]
+    then
+        scan_dir
+        ls -l "$dir" > directory-info.last
+     else
         ls -l "$dir" > directory-info.new
         if ! cmp -s "directory-info.last" "directory-info.new"
         then
@@ -89,6 +88,8 @@ run_anti_virus(){
             ls -l "$dir" > directory-info.last
             # break
         fi
+
+    fi
    
 }
 
