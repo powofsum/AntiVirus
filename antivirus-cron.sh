@@ -3,6 +3,9 @@
 dir="$1"
 malicious_dir="$2"
 
+script_dir="$(dirname "$(realpath "$0")")"
+last_file="$script_dir/directory-info.last"
+new_file="$script_dir/directory-info.new"
 
 
 virus_detected(){
@@ -39,6 +42,7 @@ virus_detected(){
 
 }
 
+
 scan_dir(){
     
 for file in "$dir"/*
@@ -60,6 +64,7 @@ done
 
 }
 
+
 move_to_malicious_dir(){
     local distDIR="$malicious_dir"
     local source_dir="$dir"
@@ -75,23 +80,23 @@ move_to_malicious_dir(){
 
 
 run_anti_virus(){
-    if  [ ! -f "directory-info.last" ]
+    if [ ! -f "$last_file" ]
     then
         scan_dir
-        ls -l "$dir" > directory-info.last
-     else
-        ls -l "$dir" > directory-info.new
-        if ! cmp -s "directory-info.last" "directory-info.new"
+        ls -l "$dir" > "$last_file"
+    else
+        ls -l "$dir" > "$new_file"
+
+        if ! cmp -s "$last_file" "$new_file"
         then
             scan_dir
-            # cp directory-info.new directory-info.last
-            ls -l "$dir" > directory-info.last
-            # break
+            ls -l "$dir" > "$last_file"
         fi
 
     fi
    
 }
+
 
 run_anti_virus
 
