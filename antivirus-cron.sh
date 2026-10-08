@@ -16,15 +16,11 @@ virus_detected(){
     virus_content=("virus" "trojan" "malware" "worm" "ransomware")
     virus_extensions=("exe" "bat" "vbs" "scr" "ps1")
 
-    #echo "$extension"
-
     for i in "${virus_extensions[@]}"
     do
         if [[ "$extension" == "$i" ]]
         then
-            
             return 0
-            
         fi
     done
 
@@ -32,14 +28,11 @@ virus_detected(){
     do
         if grep -qi "$j" "$file_path"
         then
-        #echo "problem"
             return 0
         fi
     done
 
-    #echo "no problem"
     return 1
-
 }
 
 
@@ -51,13 +44,8 @@ do
     then
         if virus_detected "$file"
         then
-            # ls -l "$dir" > directory-info.last
             echo "$file is malicious and it is DELETED"
-            # DELTE AND MOVE IT TO MALICIOUS DIR
             move_to_malicious_dir "$file"
-            #echo "$file"
-        # else
-            # echo "no virus"
         fi
     fi
 done
@@ -72,9 +60,7 @@ move_to_malicious_dir(){
 
     if [ -f "$malicious_file" ]
     then
-        mv -i "$1" "$distDIR"  # I FLAG
-        # echo " $file is virus"
-
+        mv -i "$1" "$distDIR"
     fi
 }
 
@@ -92,11 +78,8 @@ run_anti_virus(){
             scan_dir
             ls -l "$dir" > "$last_file"
         fi
-
     fi
-   
 }
 
 
 run_anti_virus
-
