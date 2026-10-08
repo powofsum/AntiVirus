@@ -100,8 +100,11 @@ m hr DOM M DOW   /path/to/antivirusd.sh /path/to/monitored_dir /path/to/quaranti
 crontab -e
 ```
 then select nano and type your schedule prefrence
+
 type ctrl+o then enter
+
 type ctrl+x
+
 Verify that your cron entry was successfully added:
 ```
 crontab -l
