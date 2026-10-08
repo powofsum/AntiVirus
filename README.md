@@ -46,7 +46,7 @@ The daemon takes three positional arguments: ./antivirusd.sh  dir malicious_dir 
 
 Using Make (automatically creates quarantine_dir before running):
 ```
-make antivirus DIR=DIR_NAME MALICIOUS_DIR=DIR_NAME  INTERVA_SECS=SECS
+make antivirus DIR=DIR_NAME MALICIOUS_DIR=DIR_NAME  INTERVAL_SECS=SECS
 ```
 
 Or running directly via shell:
@@ -60,7 +60,7 @@ test_threat.txt is malicious and it is DELETED
 
 ### Run the Restore Tool
 
-Note: Do not run antivirusd.sh and restore.sh concurrently.
+[!Caution] Do not run antivirusd.sh and restore.sh concurrently.
 
 Using Make:
 
