@@ -152,5 +152,6 @@ if [[ "$choice" -eq 1 ]]
 
 
 ## Helpful Links
+- [Shell Script](https://en.wikipedia.org/wiki/Shell_script)
 - [Makefile](https://commandlinux.com/how-to/makefile/)
 - [Cron Job](https://en.wikipedia.org/wiki/Cron)
