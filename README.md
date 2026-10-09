@@ -115,7 +115,7 @@ Verify that your cron entry was successfully added:
 ```
 crontab -l
 ```
-##Whitelist
+## Whitelist
 A file is considered as whitelist if it was restored again by the user restore.sh , A hidden file created **.whitelist"" which will contain the names of file restored by user to avoid removing it again by antivirus.
 ### How a File Added to whitelist
 When a suspicious file is detected, the daemon moves it to malicious_dir.
