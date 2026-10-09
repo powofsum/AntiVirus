@@ -115,6 +115,41 @@ Verify that your cron entry was successfully added:
 ```
 crontab -l
 ```
+##Whitelist
+A file is considered as whitelist if it was restored again by the user restore.sh , A hidden file created **.whitelist"" which will contain the names of file restored by user to avoid removing it again by antivirus.
+### How a File Added to whitelist
+When a suspicious file is detected, the daemon moves it to malicious_dir.
+If the user determines that the file is safe, they run restore.sh to restore it to its original directory.
+After the file is successfully restored, restore.sh appends its filename to a hidden text file named .whitelist, using the >> operator.
+Each line in .whitelist contains the name of one file that the user has restored and marked as safe.
+The original filename and extension remain unchanged. The .whitelist file is separate from the restored file and preserves the whitelist entries between scans.
+### How Daemon Checks the Whitelist Dusring a Scan
+Before checking a file's extension or content for suspicious patterns, antivirusd.sh checks whether the file is listed in .whitelist.
+```
+ touch .whitelist
+            if ! grep -Fxq -- "$(basename "$file")" .whitelist
+            then    
+                echo "$file is malicious and it is DELETED"
+                # DELTE AND MOVE IT TO MALICIOUS DIR
+                move_to_malicious_dir "$file"    
+             fi   
+
+```
+then in restore.sh we have
+```
+mark_as_whitelist(){
+    touch .whitelist # if it doesn't exist
+    echo "$file_selected" >> .whitelist
+}
+```
+and if user decided to restore file 
+```
+if [[ "$choice" -eq 1 ]]
+        then
+            restore_file
+            mark_as_whitelist
+```
+
 
 ## Helpful Links
 - [Makefile](https://commandlinux.com/how-to/makefile/)
