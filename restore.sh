@@ -56,6 +56,12 @@ do
         echo -e "Pick one of the files \c"
         read number
 
+        length=${#files[@]}
+        if [ "$number" -gt "$length" ]
+            then
+                continue
+        fi
+
         echo "Input 1 : Restore file back to dir"
         echo "Input 2 : Permenantly delete this file from malicious_dir"
         echo "Input 3 : Leave this file as it is and go back to the list"
