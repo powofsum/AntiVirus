@@ -185,9 +185,13 @@ echo "Hello world"
 # hello user
 # hellov_2
 
-# # [[ -f "$file"]] && return 0 || return 1      if file exist ->1 && ....   1 &&  won't check other and will return 1 son condition is true
-
+# [[ -f "$file"]] && return 0 || return 1      if file exist ->1 && ....   1 &&  won't check other and will return 1 son condition is true
 ##----------------------------------------
-read text
-extension=${text##*.}
-echo "$extension"
+
+mark_as_whitelist(){
+    touch .whitelst # if it doesn't exist
+    echo "file" >> .whitelst
+
+}
+ mark_as_whitelist
+ mark_as_whitelist

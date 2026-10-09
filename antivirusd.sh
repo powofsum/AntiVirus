@@ -48,13 +48,16 @@ do
     then
         if virus_detected "$file"
         then
-            # ls -l "$dir" > directory-info.last
-            echo "$file is malicious and it is DELETED"
-            # DELTE AND MOVE IT TO MALICIOUS DIR
-            move_to_malicious_dir "$file"
-            #echo "$file"
-        # else
-            # echo "no virus"
+            # Make sure that file isn't whitelisted
+            touch .whitelist
+            if ! grep -Fxq -- "$(basename "$file")" .whitelist
+            then    
+                # ls -l "$dir" > directory-info.last
+                echo "$file is malicious and it is DELETED"
+                # DELTE AND MOVE IT TO MALICIOUS DIR
+                move_to_malicious_dir "$file"
+                #echo "$fsile"    
+             fi   
         fi
     fi
 done

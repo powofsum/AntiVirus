@@ -29,7 +29,12 @@ delete_permanently(){
 }
 
 
+mark_as_whitelist(){
+    touch .whitelist # if it doesn't exist
+    echo "$file_selected" >> .whitelist
 
+
+}
 
 
 #-------------------------
@@ -62,6 +67,8 @@ do
         if [[ "$choice" -eq 1 ]]
         then
             restore_file
+            mark_as_whitelist
+
 
         elif [[ "$choice" -eq 2 ]]
         then
